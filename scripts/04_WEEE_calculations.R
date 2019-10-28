@@ -33,39 +33,13 @@ tbl_POM <- read.csv("tbl_POM.csv", quote = "\"",
 # ----------------------------------------------------------
 # tbl_Weibull_parameters: Read scale and shape parameters for Weibull function
 # ----------------------------------------------------------
-tbl_Weibull_parameters <- read.csv("tbl_data_tool.csv", quote = "\"",
-                                   colClasses = c("character", "character", "character", "numeric", "NULL",
-                                                  "character", "NULL"))
-
-tbl_Weibull_parameters <- plyr::rename(tbl_Weibull_parameters,c("Destination"="Parameter"))
-
-# Convert country codes to uppercase.
-tbl_Weibull_parameters$Country <- toupper(tbl_Weibull_parameters$Country)
-
-# Select data on shapes
-selection <- which(toupper(tbl_Weibull_parameters$Parameter) == "SHAPEPARAMETER")
-shapedata <- tbl_Weibull_parameters[selection, ]
-
-shapedata <- plyr::rename(shapedata,c("Value"="shape"))
-shapedata$Parameter <- NULL
-
-
-# Select data on scales
-selection <- which(toupper(tbl_Weibull_parameters$Parameter) == "SCALEPARAMETER")
-scaledata <- tbl_Weibull_parameters[selection, ]
-
-scaledata <- plyr::rename(scaledata,c("Value"="scale"))
-scaledata$Parameter <- NULL
-
-# Rebuild tbl_Weibull_parameters with the scale and shape data.
-tbl_Weibull_parameters <- merge(scaledata, shapedata,  by=c("UNU_Key", "Country", "Year"),  all = TRUE)
-rm(scaledata, shapedata)
-
+tbl_Weibull_parameters <- read.csv("htbl_Weibull.csv", quote = "\"",
+                                   colClasses = c("character", "numeric", "numeric"))
 
 # ----------------------------------------------------------
 # tbl_POM: Merge Weibull parameters with POM data
 # ----------------------------------------------------------
-tbl_POM <- merge(tbl_POM, tbl_Weibull_parameters,  by=c("UNU_Key", "Country", "Year"),  all.x = TRUE)
+tbl_POM <- merge(tbl_POM, tbl_Weibull_parameters,  by=c("UNU_Key"),  all.x = TRUE)
 
 
 # ----------------------------------------------------------
@@ -109,12 +83,12 @@ rm(weee)
 
 
 # ----------------------------------------------------------
-# tbl_POM: Summing the waste arrising from all past years
+# tbl_POM: Summing the waste arising from all past years
 # ----------------------------------------------------------
 
 # Calculate WEEE-generated for all years as the sum of all past years per UNU_Key and Country
 
-# First melt all years into long form. Other variables exclusing the years and the classifications are removed.
+# First melt all years into long form. Other variables excluding the years and the classifications are removed.
 mylong <- melt(tbl_POM[-(7:10)], id = c("UNU_Key", "Country", "Stratum", "Year", "POM_t", "POM_pieces"))
 
 # Remove empty rows to reduce memory burden
@@ -170,7 +144,7 @@ sortorder <- order(tbl_WEEE$Country, tbl_WEEE$UNU_Key, tbl_WEEE$Year)
 tbl_WEEE <- tbl_WEEE[sortorder, sortorder_c]
 
 
-# Save data into tbl_POM.csv
+# Save data into tbl_WEEE.csv
 write.csv(tbl_WEEE, file = "tbl_WEEE.csv", quote = TRUE, row.names = FALSE)
 
 

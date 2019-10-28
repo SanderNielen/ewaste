@@ -11,9 +11,9 @@
 # Do this for every year. When all data is ready run the code below.
 
 
-require(rsdmx)
-url <- paste(DATA_PATH, "prodcom_import/PRODCOM_1995.xml", sep = "/")
-myData <- as.data.frame( readSDMX(url, isURL = FALSE) )
+# require(rsdmx)
+# url <- paste(DATA_PATH, "prodcom_import/PRODCOM_1995.xml", sep = "/")
+# myData <- as.data.frame( readSDMX(url, isURL = FALSE) )
 
 
 # Dit hierboven werkt, al duurt het 20 minuten om 1 sdmx naar dataframe te converteren.
@@ -35,7 +35,7 @@ myData <- as.data.frame( readSDMX(url, isURL = FALSE) )
 #                   Data including the Prodcom codes referring to Electronic Equipment are only available in
 #                   Excel sheets.
 #
-#                   These data files are autmatically downloaded at the start of this script
+#                   These data files are automatically downloaded at the start of this script
 #                   and placed at the right location.
 #
 #                   In case the download does not work, download the files manually:
@@ -71,131 +71,149 @@ require(readxl)
 # Download the Prodcom files
 # ----------------------------------------------------------
 
-# 2015
-url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2015_N2.xlsx"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2015_N2.xlsx", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2018
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2018_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2018_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2014
-url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2014_N2.xlsx"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2014_N2.xlsx", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2017
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2017_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2017_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2013
-url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2013_N2.xlsx"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2013_N2.xlsx", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2016
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2016_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2016_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2012
-url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2012_N2.xlsx"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2012_N2.xlsx", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2015
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2015_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2015_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2011
-url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2011_N2.xlsx"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2011_N2.xlsx", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2014
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2014_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2014_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2010
-url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2010_N2.xlsx"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2010_N2.xlsx", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2013
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2013_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2013_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2009
-url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2009_N2.xlsx"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2009_N2.xlsx", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2012
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2012_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2012_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2008
-url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2008_N2.xlsx"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2008_N2.xlsx", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2011
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2011_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2011_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2007
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2007_N1.xlsx"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2007_N1.xlsx", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2010
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2010_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2010_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2006
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2006_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2006_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2009
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2009_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2009_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2005
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2005_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2005_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2008
+# url <- "http://ec.europa.eu/eurostat/documents/120432/120476/Website_snapshot_2008_N2.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2008_N2.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2004
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2004_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2004_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2007
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2007_N1.xlsx"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2007_N1.xlsx", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2003
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2003_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2003_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2006
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2006_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2006_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2002
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-2002-created-2009-11-09-N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2002-created-2009-11-09-N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2005
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2005_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2005_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2001
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-2001-created-2009-11-09_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2001-created-2009-11-09_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2004
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2004_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2004_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 2000
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-2000-created-2009-11-09_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2000-created-2009-11-09_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2003
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website_snapshot_2003_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2003_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 1999
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1999-created-2009-11-09_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1999-created-2009-11-09_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2002
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-2002-created-2009-11-09-N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2002-created-2009-11-09-N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 1998
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1998-created-2009-11-09_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1998-created-2009-11-09_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2001
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-2001-created-2009-11-09_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2001-created-2009-11-09_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 1997
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1997-created-2009-11-09_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1997-created-2009-11-09_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 2000
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-2000-created-2009-11-09_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_2000-created-2009-11-09_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 1996
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1996-created-2009-11-09_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1996-created-2009-11-09_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 1999
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1999-created-2009-11-09_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1999-created-2009-11-09_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
-# 1995
-url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1995-created-2009-11-09_N1.xls"
-destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1995-created-2009-11-09_N1.xls", sep = "/")
-download.file(url, destfile, quiet = FALSE, mode = "wb",
-              cacheOK = TRUE, extra = getOption("download.file.extra"))
+# # 1998
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1998-created-2009-11-09_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1998-created-2009-11-09_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
+
+# # 1997
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1997-created-2009-11-09_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1997-created-2009-11-09_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
+
+# # 1996
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1996-created-2009-11-09_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1996-created-2009-11-09_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
+
+# # 1995
+# url <- "http://ec.europa.eu/eurostat/documents/120432/6191935/Website-snapshot-1995-created-2009-11-09_N1.xls"
+# destfile <- paste(DATA_PATH, "prodcom_import/Website_snapshot_1995-created-2009-11-09_N1.xls", sep = "/")
+# download.file(url, destfile, quiet = FALSE, mode = "wb",
+              # cacheOK = TRUE, extra = getOption("download.file.extra"))
 
 rm(url)
 rm(destfile)
@@ -215,7 +233,7 @@ htbl_PCC_Match_Key <- htbl_PCC_Match_Key[(htbl_PCC_Match_Key$PCC != "" & htbl_PC
 # Read the Excel files with Prodcom data
 # ----------------------------------------------------------
 
-# All values of the prodcom data in the Excel files from Eurostat website are expressed in thousands of euro's.
+# All values of the prodcom data in the Excel files from Eurostat website are expressed in thousands of euros.
 # All volumes are expressed in thousands of the given unit
 
 filenames <- list.files("./prodcom_import", pattern="^Website_snapshot_.*\\.xls", full.names=TRUE)
@@ -236,7 +254,7 @@ for (i in 1:length(filenames)) {
                                col_names = FALSE,
                                na="-",
                                skip = 2)
-  # Resore column names
+  # Restore column names
   names(PCC_SoldVolume) <- colnames
   
   # Remove first 4 rows. 
@@ -257,7 +275,7 @@ for (i in 1:length(filenames)) {
                                na="-",
                                skip = 2)
   
-  # Resore column names
+  # Restore column names
   names(PCC_Value) <- colnames
   
   # Remove first 4 rows
@@ -421,7 +439,7 @@ prodcom[selection, "Value"] <- NA
 # Some values can contain comma's. We need to replace them to dots.
 prodcom$Value <- gsub(",", ".", prodcom$Value)
 
-# Convert Value to numeric, convert from 1000 euro's to single euro's and round.
+# Convert Value to numeric, convert from 1000 euros to single euros and round.
 prodcom$Value <- round(as.numeric(prodcom$Value) * 1000, digits = 0)
 
 

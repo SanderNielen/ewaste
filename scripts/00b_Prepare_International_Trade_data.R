@@ -13,7 +13,7 @@
 #                   The data is also published at the Eurostat website:
 #                   http://epp.eurostat.ec.europa.eu/newxtweb/
 #
-#                   You can also download data from there as well if you prefer, but his is not
+#                   You can also download data from there as well if you prefer, but this is not
 #                   what is used in the remainder of the script.
 #                   This is how the download from http://epp.eurostat.ec.europa.eu/newxtweb/ works:
 #
@@ -88,7 +88,7 @@ require(reshape2)
 # tbl_sup_units: Read the CSV file with the supplementary units information
 # ----------------------------------------------------------
 
-# The supplentary quanity units are needed to know what the supplementary quantity means.
+# The supplementary quantity units are needed to know what the supplementary quantity means.
 # When the units are Number of items (p/st) they will be used in the calculations.
 
 tbl_sup_units <- read.csv("htbl_supplementary_units.csv", header = TRUE,
@@ -119,7 +119,7 @@ filenames <- list.files("./international_trade", pattern="^nc.*\\.dat", full.nam
 filenames <- normalizePath(filenames)
 stopifnot(all(file.exists(filenames)))
 
-# Create emtpy dataframe to store the data in.
+# Create empty dataframe to store the data in.
 tbl_CN_all <- data.frame()
 
 for (i in 1:length(filenames)) {
@@ -152,7 +152,7 @@ for (i in 1:length(filenames)) {
   # Don't run this part if you want all products (so also other than electrical)
   # Here the not electrical products are removed for speed and in case of computer memory shortage.
   # Running only the electrical products takes about 50 minutes. All records takes a couple of hours.
-  # When running all records also run line 163 to save that data.
+  # When running all records also run line 247 to save that data. # fixed reference
   # Only take records that are available in both files
   CN_1Year_data <- merge(CN_1Year_data, htbl_CN_Match_Key, by=c("CN", "Year"))
   CN_1Year_data$UNU_Key <- NULL
@@ -196,7 +196,7 @@ for (i in 1:length(filenames)) {
   CN_1Year_data$DECLARANT[CN_1Year_data$DECLARANT=="063"] <- "SVK"
   CN_1Year_data$DECLARANT[CN_1Year_data$DECLARANT=="064"] <- "HUN"
   CN_1Year_data$DECLARANT[CN_1Year_data$DECLARANT=="066"] <- "ROU"
-  CN_1Year_data$DECLARANT[CN_1Year_data$DECLARANT=="068"] <- "BRG"
+  CN_1Year_data$DECLARANT[CN_1Year_data$DECLARANT=="068"] <- "BGR" #Crucial typo fixed!
   CN_1Year_data$DECLARANT[CN_1Year_data$DECLARANT=="091"] <- "SVN"
   CN_1Year_data$DECLARANT[CN_1Year_data$DECLARANT=="092"] <- "HRV"
   CN_1Year_data$DECLARANT[CN_1Year_data$DECLARANT=="600"] <- "CYP"
@@ -222,7 +222,7 @@ for (i in 1:length(filenames)) {
   CN_1Year_data$Import_Quantity_kg <- CN_1Year_data$Import_Quantity_kg * 1000
   CN_1Year_data$Export_Quantity_kg <- CN_1Year_data$Export_Quantity_kg * 1000
   
-  # And 1000 Euros' have to be converted to Euro's.
+  # And 1000 Euros have to be converted to Euros.
   CN_1Year_data$Import_Value <- CN_1Year_data$Import_Value * 1000
   CN_1Year_data$Export_Value <- CN_1Year_data$Export_Value * 1000
   
@@ -239,7 +239,7 @@ for (i in 1:length(filenames)) {
   if (exists("tbl_CN_all") == FALSE)
   {tbl_CN_all <- data.frame()}
   
-  # Append the last read data to this file to makea datafile for all years
+  # Append the last read data to this file to make a datafile for all years
   tbl_CN_all <- rbind(tbl_CN_all, CN_1Year_data)
   
 }

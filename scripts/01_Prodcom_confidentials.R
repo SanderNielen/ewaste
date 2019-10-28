@@ -3,7 +3,7 @@
 #   Name:           01Prodcom_confidentials.R
 #
 #   Description:    This script will read a CSV file with prodcom data that contains values that have been
-#                   hidden because of confidentiallity.
+#                   hidden because of confidentiality.
 #                   With help of data of International Trade exports and conversion tables an estimation
 #                   is being made of the confidential values.
 #
@@ -32,7 +32,7 @@ select_countries <- function(df) {
 
 
 # ----------------------------------------------------------
-# tbl_data_pcc_conf: Read prodcom data with confidentiallity codes
+# tbl_data_pcc_conf: Read prodcom data with confidentiality codes
 # ----------------------------------------------------------
 # The Prodcom datafile has been assembled in script "00a_Prepare_Prodcom_data.R"
 tbl_data_pcc_conf <- read.csv("tbl_data_pcc_conf.csv", header = TRUE,

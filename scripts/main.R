@@ -19,8 +19,9 @@
 
 #------------------------------------
 # define path for source code including check if variable has been set
-stopifnot(file.exists(Sys.getenv("EWASTE_SCRIPT_PATH")))
-SCRIPT_PATH <- (Sys.getenv("EWASTE_SCRIPT_PATH"))
+SCRIPT_PATH <- "C:\\Users\\nielenssvan\\surfdrive\\MFA\\scripts\\ewaste-xtended\\scripts"
+#stopifnot(file.exists(Sys.getenv("EWASTE_SCRIPT_PATH")))
+#SCRIPT_PATH <- (Sys.getenv("EWASTE_SCRIPT_PATH"))
 #------------------------------------
 
 
@@ -74,13 +75,13 @@ stopifnot(all(file.exists(c(SCRIPT_PATH, DATA_PATH))))
 
 #------------------------------------
 # run all scripts
-scripts <- list(#"00a_Prepare_Prodcom_data.R",
-                 #"00b_Prepare_nternational_Trade_data.R",
+scripts <- list(#"00a_Prepare_Prodcom_data.R"
+                "00b_Prepare_International_Trade_data.R",
                 "01_Prodcom_confidentials.R",
-                "02_Apparent_Consumption_Method.R",
-                "03_POM_calculations.R", 
-                "04_WEEE_calculations.R",
-                "05_Make_tblAnalysis.R"
+                "02_Apparent_Consumption_Method.R"
+                #"03_POM_calculations.R",
+                #"04_WEEE_calculations.R",
+                #"05_Make_tblAnalysis.R"
                 )
                 
 

@@ -31,3 +31,7 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+# Big data files (freely available from EuroStat)
+data/international_trade/
+data/prodcom_import/

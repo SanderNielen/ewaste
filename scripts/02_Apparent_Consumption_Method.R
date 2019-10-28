@@ -30,13 +30,24 @@ tbl_PCC <- read.csv("tbl_PCC.csv", quote = "\"",
 
 
 # ----------------------------------------------------------
-# htbl_PCC_Weight: Read average weights per prodcom code
+# htbl_PCC_Weight: Read average weights per prodcom code #NEW
 # ----------------------------------------------------------
 htbl_PCC_Weight <- read.csv("htbl_PCC_Weight.csv", quote = "\"",
-                                colClasses = c("character", "numeric", "character"))
+                            colClasses = c("character", "numeric", "character"))
 
 # rename AverageWeight to PCC_Av_W
 names(htbl_PCC_Weight)[2] <- "PCC_Av_W"
+
+# Split table into one for general average weights and one for year specific weights
+selection <- which( htbl_PCC_Weight$Year != "" )
+if (length(selection) > 0){
+  htbl_PCC_Weight_yr <- htbl_PCC_Weight[selection, ]
+  htbl_PCC_Weight_yr <- plyr::rename(htbl_PCC_Weight_yr, c("PCC_Av_W"="PCC_Year_Av_W"))
+}
+
+# and remove the same rows from the original
+htbl_PCC_Weight <- htbl_PCC_Weight[-selection,]
+htbl_PCC_Weight$Year <- NULL
 
 
 # ----------------------------------------------------------
@@ -56,7 +67,7 @@ if (length(selection) > 0){
   htbl_Key_Weight_country <- plyr::rename(htbl_Key_Weight_country, c("Key_Av_W"="Key_Country_Av_W"))
 }
 
-# and remove the same rows from the orginal
+# and remove the same rows from the original
 htbl_Key_Weight <- htbl_Key_Weight[-selection,]
 htbl_Key_Weight$Country <- NULL
 
@@ -77,10 +88,20 @@ htbl_PCC_Match_Key <- merge(htbl_PCC_Match_Key, htbl_Key_Weight, by=c("UNU_Key",
 
 
 # ----------------------------------------------------------
-# tbl_PCC: Merge PCC average weights with prodcom data
+# tbl_PCC: Merge PCC average weights with prodcom data #NEW
 # ----------------------------------------------------------
-tbl_PCC <- merge(tbl_PCC, htbl_PCC_Weight, by=c("PCC", "Year"), all.x = TRUE)
+tbl_PCC <- merge(tbl_PCC, htbl_PCC_Weight, by=c("PCC"), all.x = TRUE)
+tbl_PCC <- merge(tbl_PCC, htbl_PCC_Weight_yr, by=c("PCC", "Year"), all.x = TRUE)
+
+# Use the year specific average weight if available.
+selection <- which (!is.na(tbl_PCC$PCC_Year_Av_W))
+if (length(selection) > 0){
+  tbl_PCC[selection, "PCC_Av_W"] <- tbl_PCC[selection, "PCC_Year_Av_W"]
+}
+
+tbl_PCC$PCC_Year_Av_W <- NULL
 rm(htbl_PCC_Weight)
+rm(htbl_PCC_Weight_yr)
 
 
 # ----------------------------------------------------------
@@ -260,13 +281,24 @@ tbl_CN[tbl_CN$CN %in% c("84512110",
                          "90248010"), "Unit"] <- "-"
 
 # ----------------------------------------------------------
-# htbl_CN_Weight: Read average weights per CN code
+# htbl_CN_Weight: Read average weights per CN code #NEW
 # ----------------------------------------------------------
 htbl_CN_Weight <- read.csv("htbl_CN_Weight.csv",quote = "\"",
                              colClasses = c("character", "numeric", "character"))
 
 # rename AverageWeight to CN_Av_W
-names(htbl_CN_Weight)[2] <- "CN_Av_W"
+htbl_CN_Weight <- plyr::rename(htbl_CN_Weight, c("AverageWeight"="CN_Av_W"))
+
+# Split table into one for general average weights and one for year specific weights
+selection <- which( htbl_CN_Weight$Year != "" )
+if (length(selection) > 0){
+  htbl_CN_Weight_yr <- htbl_CN_Weight[selection, ]
+  htbl_CN_Weight_yr <- plyr::rename(htbl_CN_Weight_yr, c("CN_Av_W"="CN_Year_Av_W"))
+}
+
+# and remove the same rows from the original
+htbl_CN_Weight <- htbl_CN_Weight[-selection,]
+htbl_CN_Weight$Year <- NULL
 
 
 
@@ -287,11 +319,20 @@ htbl_CN_Match_Key <- merge(htbl_CN_Match_Key, htbl_Key_Weight, by=c("UNU_Key", "
 
 
 # ----------------------------------------------------------
-# tbl_CN: Merge CN average weights with CN data
+# tbl_CN: Merge CN average weights with CN data #NEW
 # ----------------------------------------------------------
-tbl_CN <- merge(tbl_CN, htbl_CN_Weight, by=c("CN", "Year"),
-                  all.x = TRUE)
+tbl_CN <- merge(tbl_CN, htbl_CN_Weight, by=c("CN"), all.x = TRUE)
+tbl_CN <- merge(tbl_CN, htbl_CN_Weight_yr, by=c("CN", "Year"), all.x = TRUE)
+
+# Use the year specific average weight if available.
+selection <- which (!is.na(tbl_CN$CN_Year_Av_W))
+if (length(selection) > 0){
+  tbl_CN[selection, "CN_Av_W"] <- tbl_CN[selection, "CN_Year_Av_W"]
+}
+
+tbl_CN$CN_Year_Av_W <- NULL
 rm(htbl_CN_Weight)
+rm(htbl_CN_Weight_yr)
 
 
 # ----------------------------------------------------------
