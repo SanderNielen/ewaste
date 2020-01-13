@@ -21,8 +21,8 @@ require(reshape2)
 # UNU_countries: Read raw version of POM data
 # ----------------------------------------------------------
 UNU_countries <- read.csv("UNU_countries.csv",
-                          colClasses = c("character", "character", "character",
-                                         "numeric", "numeric"))
+                          colClasses = c(rep("character", 3), rep("NULL", 6),
+                                         rep("numeric", 2) ))
 
 # Make copy so at the end of the calculations, we can see the impact of the alterations.
 original_UNU_countries <- UNU_countries
@@ -56,7 +56,7 @@ Population <- plyr::rename(Population,c("Value"="Inhabitants"))
 # We estimate it by taking the first known value and apply the world population growth rate found at:
 # http://www.worldometers.info/world-population/world-population-by-year/
 
-tbl_world_population <- read.csv2("tbl_world_population.csv", quote = "\"",
+tbl_world_population <- read.csv("tbl_world_population.csv",
                                   colClasses = c("character", "NULL", "numeric", "NULL",  "NULL", "NULL", "NULL") )
 
 names(tbl_world_population)[2] <- "GrowthRate"
@@ -135,6 +135,8 @@ UNU_countries <- merge(UNU_countries, UNU_Key_Year_Country,  by=c("UNU_Key", "Ye
 # Create flag variable and give value of 0 for original data and 1 for missing data.
 UNU_countries$flag <- ifelse(is.na(UNU_countries$POM_kg) & is.na(UNU_countries$POM_pieces),1,0)
 
+# Add flag to industrial products, i.e. having a 12xx UNU_Key
+UNU_countries[grep("^12", UNU_countries$UNU_Key), "flag"] <- 70
 
 rm(myUNU_Keys, myYears, myCountries, UNU_Key_Year, UNU_Key_Year_Country)
 
@@ -231,7 +233,7 @@ if (length(selection) > 0)
 
 
 
-# There are too many unrealistic data points in UNU_Key 0802. For now values of over 20 kg per inhabitant ar removed.
+# There are too many unrealistic data points in UNU_Key 0802. For now values of over 20 kg per inhabitant are removed.
 # Otherwise only the largest outliers get removed, but much smaller - however still very big - outliers remain.
 # More research is needed to see if average weight per prodcom code could be improved.
 selection <- which(UNU_countries$UNU_Key == "0802" & UNU_countries$kpi > 20 )
@@ -277,7 +279,7 @@ rm(mydf)
 
 
 # ----------------------------------------------------------
-# UNU_countries: Calulate stratum means for estimation missing values based on stratum means
+# UNU_countries: Calculate stratum means for estimation missing values based on stratum means
 # ----------------------------------------------------------
 
 # Calculate stratum means and write into strat_tot
