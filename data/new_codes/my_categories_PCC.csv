@@ -1,153 +1,154 @@
-"Code","Description","Key","PCC"
-"20.30.21.30","Prepared pigments, opacifiers, colours and similar preparations for ceramics, enamelling or glass","Pigments",20302130
-"20.59.56.60","Reaction initiators, reaction accelerators and catalytic preparations ","Catalysts",20595660
-"25.99.29.95","Permanent magnets and articles intended to become permanent magnets, of metal","Permanent magnets",25992995
-"26.60.12.80","Electro-diagnostic, apparatus (excluding electro-cardiographs), n.e.c.","MRIs",26601280
-"28.11.24.00","Generating sets, wind-powered","Wind turbines",28112400
-"28.12.12.00","Rotating hydraulic and pneumatic motors","Industrial machines",28121200
-"28.12.13.20","Hydraulic pumps (piston)","Industrial pumps",28121320
-"28.12.13.50","Hydraulic pumps (gear)","Industrial pumps",28121350
-"28.12.13.80","Hydraulic pumps (vane)","Industrial pumps",28121380
-"28.13.11.05","Pumps fitted or designed to be fitted with a measuring device, for dispensing fuel or lubricants, of the type used in filling stations or in garages","Industrial pumps",28131105
-"28.13.11.25","Pumps fitted or designed to be fitted with a measuring device, for dispensing liquids (excl.pumps for dispensing fuel or lubricants, of the type used in filling stations or in garages)","Industrial pumps",28131125
-"28.13.11.45","Hand pumps for liquids, excluding pumps fitted or designed to be fitted with a measuring device","Industrial pumps",28131145
-"28.13.11.65","Fuel, lubricating or cooling-medium pumps for internal combustion engines","Industrial pumps",28131165
-"28.13.11.85","Concrete pumps","Industrial pumps",28131185
-"28.13.12.20","Positive displacement reciprocating pumps, dosing and proportioning","Industrial pumps",28131220
-"28.13.12.50","In-line reciprocating piston pumps","Industrial pumps",28131250
-"28.13.12.80","Positive displacement reciprocating pumps, diaphragm","Industrial pumps",28131280
-"28.13.13.20","Positive displacement pumps, rotary, gear","Industrial pumps",28131320
-"28.13.13.40","Positive displacement pumps, rotary, vane","Industrial pumps",28131340
-"28.13.13.60","Positive displacement pumps, rotary, screw","Industrial pumps",28131360
-"28.13.13.80","Positive displacement pumps, rotary (including peristaltic, rotary lobe and helical rotor pumps) (excluding hydraulic units, gear pumps, vane pumps, screw pumps)","Industrial pumps",28131380
-"28.13.14.13","Submersible motor, single-stage rotodynamic drainage and sewage pumps","Industrial pumps",28131413
-"28.13.14.15","Submersible motor, multi-stage rotodynamic pumps","Industrial pumps",28131415
-"28.13.14.17","Glandless impeller pumps for heating systems and warm water supply","Industrial pumps",28131417
-"28.13.14.20","Rotodynamic pumps ≤ 15 mm discharge","Industrial pumps",28131420
-"28.13.14.30","Centrifugal pumps with a discharge outlet diameter > 15 mm, channel impeller pumps, side channel pumps, peripheral pumps and regenerative pumps","Industrial pumps",28131430
-"28.13.14.51","Centrifugal pumps with a discharge outlet diameter > 15 mm, single-stage with a single entry impeller, close coupled","Industrial pumps",28131451
-"28.13.14.53","Centrifugal pumps with a discharge outlet diameter > 15 mm, single stage with a single entry impeller, long coupled","Industrial pumps",28131453
-"28.13.14.55","Centrifugal pumps with a discharge outlet diameter > 15 mm, single-stage with double entry impeller","Industrial pumps",28131455
-"28.13.14.60","Centrifugal pumps with a discharge outlet diameter > 15 mm, multi-stage (including self-priming)","Industrial pumps",28131460
-"28.13.14.71","Rotodynamic single-stage mixed flow or axial pumps","Industrial pumps",28131471
-"28.13.14.75","Rotodynamic multi-stage mixed flow or axial pumps","Industrial pumps",28131475
-"28.13.14.80","Other liquid pumps, liquid elevators","Industrial pumps",28131480
-"28.13.21.70","Rotary piston vacuum pumps, sliding vane rotary pumps, molecular drag pumps, Roots pumps, diffusion pumps, cryopumps and adsorption pumps","Industrial pumps",28132170
-"28.13.21.90","Vacuum pumps of a kind used solely or principally for the manufacture of semiconductors or flat panel displays; liquid ring","Industrial pumps",28132190
-"28.13.22.00","Hand or foot-operated air pumps","Industrial pumps",28132200
-"28.13.23.00","Compressors for refrigeration equipment","Industrial pumps",28132300
-"28.13.24.00","Air compressors mounted on a wheeled chassis for towing","Industrial pumps",28132400
-"28.13.25.30","Turbo-compressors, single stage","Industrial pumps",28132530
-"28.13.25.50","Turbo-compressors, multistage","Industrial pumps",28132550
-"28.13.26.30","Reciprocating displacement compressors having a gauge pressure capacity ≤ 15 bar, giving a flow ≤ 60 m³/hour","Industrial pumps",28132630
-"28.13.26.50","Reciprocating displacement compressors having a gauge pressure capacity ≤ 15 bar, giving a flow per hour > 60 m³","Industrial pumps",28132650
-"28.13.26.70","Reciprocating displacement compressors having a gauge pressure capacity > 15 bar, giving a flow per hour ≤ 120 m³","Industrial pumps",28132670
-"28.13.26.90","Reciprocating displacement compressors having a gauge pressure capacity > 15 bar, giving a flow per hour > 120 m³","Industrial pumps",28132690
-"28.13.27.30","Rotary displacement compressors, single-shaft","Industrial pumps",28132730
-"28.13.27.53","Multi-shaft screw compressors","Industrial pumps",28132753
-"28.13.27.55","Multi-shaft compressors (excluding screw compressors)","Industrial pumps",28132755
-"28.13.28.00","Air pumps and ventilating or recycling hoods incorporating a fan, whether or not fitted with filters, with a maximum horizontal side > 120 cm (excl. vacuum pumps, hand- or foot-operated air pumps and compressors)","Industrial pumps",28132800
-"28.13.31.00","Parts of pumps for liquids and for liquid elevators","Industrial pumps",28133100
-"28.13.32.00","Parts of air and vacuum pumps, of air and gas compressors, of fans, and of hoods","Industrial pumps",28133200
-"28.22.11.30","Pulley tackle and hoists powered by an electric motor (excluding of the kind used for raising vehicles)","Industrial machines",28221130
-"28.22.13.30","Built-in jacking systems of a type used in garages for raising vehicles","Industrial machines",28221330
-"28.22.13.50","Hydraulic jacks and hoists for raising vehicles (excluding those for use in garages)","Industrial machines",28221350
-"28.22.13.70","Jacks and hoists of a kind used for raising vehicles (excluding built-in jacking systems of a kind used in garages, hydraulic jacks and hoists)","Industrial machines",28221370
-"28.22.13.30","Built-in jacking systems of a type used in garages for raising vehicles","Industrial machines",28221330
-"28.22.13.50","Hydraulic jacks and hoists for raising vehicles (excluding those for use in garages)","Industrial machines",28221350
-"28.22.13.70","Jacks and hoists of a kind used for raising vehicles (excluding built-in jacking systems of a kind used in garages, hydraulic jacks and hoists)","Industrial machines",28221370
-"28.22.14.20","Overhead travelling cranes on fixed support","Industrial machines",28221420
-"28.22.14.33","Mobile lifting frames on tyres and straddle carriers","Industrial machines",28221433
-"28.22.14.35","Transporter cranes, gantry cranes and bridge cranes","Industrial machines",28221435
-"28.22.14.40","Tower cranes and portal or pedestal jib cranes","Industrial machines",28221440
-"28.22.14.50","Self-propelled lifting equipment, of a kind mounted to run on rails in servicing building sites, quarries and the like","Industrial machines",28221450
-"28.22.14.60","Lifting equipment designed for mounting on road vehicles","Industrial machines",28221460
-"28.22.14.70","Lifting equipment (excluding overhead travelling cranes, tower, transporter, gantry, portal, bridge or pedestal jib cranes, mobile lifting frames or straddle carriers, self-propelled machinery)","Industrial machines",28221470
-"28.22.15.13","Self-propelled works trucks fitted with lifting or handling equipment, powered by an electric motor, with a lifting height ≥ 1 m","Industrial machines",28221513
-"28.22.15.15","Self-propelled works trucks fitted with lifting or handling equipment, powered by an electric motor, with a lifting height < 1 m","Industrial machines",28221515
-"28.22.15.50","Works trucks fitted with lifting or handling equipment (excluding self-propelled trucks)","Industrial machines",28221550
-"28.22.15.70","Works trucks, self-propelled, not fitted with lifting or handling equipment, of the type used in factories, warehouses, dock areas or airports for short distance transport of goods; tractors of the type used on railway station platforms","Industrial machines",28221570
-"28.22.16.30","Electrically operated lifts and skip hoists","Industrial machines",28221630
-"28.22.16.70","Escalators and moving walkways","Industrial machines",28221670
-"28.30.10.00","Pedestrian-controlled tractors","Industrial machines",28301000
-"28.30.21.10","Tractors of an engine power ≤ 37 kW, excluding pedestrian-controlled tractors, road tractors for semi-trailers, track-laying tractors","Industrial machines",28302110
-"28.30.22.10","Tractors of an engine power > 37 kW but ≤ 59 kW, excluding pedestrian-controlled tractors, road tractors for semi-trailers, track-laying tractors","Industrial machines",28302210
-"28.30.23.00","Tractors of an engine power > 59 kW, excluding pedestrian-controlled tractors, road tractors for semi-trailers, track-laying tractors","Industrial machines",28302300
-"28.30.31.40","Ploughs","Industrial machines",28303140
-"28.30.32.10","Scarifiers and cultivators","Industrial machines",28303210
-"28.30.32.20","Disc harrows","Industrial machines",28303220
-"28.30.32.30","Harrows (excluding disc harrows)","Industrial machines",28303230
-"28.30.32.50","Rotovators","Industrial machines",28303250
-"28.30.32.70","Weeders and hoes","Industrial machines",28303270
-"28.30.33.00","Seeders, planters and transplanters","Industrial machines",28303300
-"28.30.34.30","Distributors for mineral or chemical fertiliser for soil preparation","Industrial machines",28303430
-"28.30.34.50","Manure spreaders and fertiliser distributors (excluding for mineral or chemical fertilisers)","Industrial machines",28303450
-"28.30.39.00","Agricultural... forestry machinery, n.e.c.; lawn or sports-ground rollers","Industrial machines",28303900
-"28.30.40.10","Electric mowers for lawns, parks, golf courses or sports grounds","Industrial machines",28304010
-"28.30.40.30","Mowers for lawns, parks or sports grounds, powered non-electrically, with the cutting device rotating in a horizontal plane","Industrial machines",28304030
-"28.30.40.50","Motor mowers for lawns, parks or sports grounds, powered non-electrically, with the cutting device rotating in a vertical plane or with cutter bars","Industrial machines",28304050
-"28.30.40.70","Mowers for lawns, parks or sports grounds, without motor","Industrial machines",28304070
-"28.30.51.30","Motor mowers (excluding for lawns, parks, golf courses or sports grounds)","Industrial machines",28305130
-"28.30.51.50","Mowers, including cutter bars, designed to be carried on or hauled by a tractor","Industrial machines",28305150
-"28.30.51.70","Mowers (excluding those with motors, for lawns, parks, golf courses or sports grounds, those designed to be hauled or carried by a tractor)","Industrial machines",28305170
-"28.30.52.00","Hay-making machinery","Industrial machines",28305200
-"28.30.53.40","Straw or fodder balers, including pick-up balers","Industrial machines",28305340
-"28.30.54.20","Potato-diggers and potato harvesters","Industrial machines",28305420
-"28.30.54.50","Beet-topping machines and beet harvesters","Industrial machines",28305450
-"28.30.54.80","Root or tuber harvesting machines (excluding potato-diggers and potato harvesters, beet-topping machines and beet harvesters)","Industrial machines",28305480
-"28.30.59.15","Combine harvester-threshers","Industrial machines",28305915
-"28.30.59.30","Agricultural threshing machinery (excluding combine harvester-threshers)","Industrial machines",28305930
-"28.30.59.45","Forage harvesters (excluding self-propelled)","Industrial machines",28305945
-"28.30.59.60","Forage harvesters, self-propelled","Industrial machines",28305960
-"28.30.59.70","Harvesting machines (excluding combine harvester threshers, root or tuber harvesting machines, forage harvesters)","Industrial machines",28305970
-"28.99.20.20","Machines and apparatus used solely or principally for the manufacture of semiconductor boules or wafers","Industrial robots",28992020
-"28.99.20.40","Machines and apparatus for the manufacture of semiconductor devices or of electronic integrated circuits","Industrial robots",28992040
-"28.99.20.60","Machines and apparatus used solely or principally for the manufacture of flat panel displays","Industrial robots",28992060
-"28.99.39.35","Industrial robots for multiple uses (excluding robots designed to perform a specific function (e.g. lifting, handling, loading or unloading))","Industrial robots",28993935
-"28.99.39.45","Machines and apparatus used solely or principally for (a) the manufacture or repair of masks and reticles, (b) assembling semiconductor devices or electronic integrated circuits, and (c) lifting, handling, loading or unloading of boules, wafers, semiconductor devices, electronic integrated circuits and flat panel displays","Industrial robots",28993945
-"28.92.11.00","Continuous-action elevators and conveyors, for underground use","NRMM",28921100
-"28.92.12.33","Self-propelled coal or rock cutters and tunnelling machinery","NRMM",28921233
-"28.92.12.35","Coal or rock cutters and tunnelling machinery (excluding self-propelled)","NRMM",28921235
-"28.92.12.53","Self-propelled boring or sinking machinery","NRMM",28921253
-"28.92.12.55","Boring or sinking machinery (including fixed platforms used for oil or natural gas exploration) (excluding self-propelled)","NRMM",28921255
-"28.92.21.30","Crawler dozers (excluding wheeled)","NRMM",28922130
-"28.92.21.50","Wheeled dozers (excluding track-laying)","NRMM",28922150
-"28.92.22.10","Motor graders, levellers and scrapers","NRMM",28922210
-"28.92.23.10","Ride-on compaction equipment and the like","NRMM",28922310
-"28.92.24.30","Loaders specially designed for underground use","NRMM",28922430
-"28.92.24.50","Wheeled or crawler front-end shovel loaders (excl. specially designed for underground use)","NRMM",28922450
-"28.92.25.00","Self-propelled mechanical shovels, excavators and shovel loaders, with a 360 degree revolving superstructure, except front-end shovel loaders","NRMM",28922500
-"28.92.26.30","Self-propelled mechanical shovels, excavators and shovel loaders (excl. self-propelled mechanical shovels with a 360° revolving superstructure and front-end shovel loaders)","NRMM",28922630
-"28.92.26.50","Self-propelled earth moving, excavating... machinery, n.e.c.","NRMM",28922650
-"28.92.27.00","Bulldozer or angledozer blades","NRMM",28922700
-"28.92.28.10","Dumpers for off-highway use","NRMM",28922810
-"28.92.30.10","Pile-drivers and pile-extractors","NRMM",28923010
-"28.92.30.30","Snow-ploughs and snow-blowers","NRMM",28923030
-"28.92.30.50","Tamping or compacting machinery (excluding self-propelled)","NRMM",28923050
-"28.92.30.70","Scrapers earth moving, excavating, extracting... machinery, not self-propelled","NRMM",28923070
-"28.92.30.90","Machinery for public works, building or the like, n.e.s.","NRMM",28923090
-"28.92.50.00","Track-laying tractors","NRMM",28925000
-"29.10.21.00","Vehicles with only spark-ignition engine of a cylinder capacity ≤ 1 500 cm³","Cars",29102100
-"29.10.22.30","Motor vehicles with only petrol engine > 1 500 cm³ (including motor caravans of a capacity > 3 000 cm³) (excluding vehicles for transporting ≥ 10 persons, snowmobiles, golf cars and similar vehicles)","Cars",29102230
-"29.10.22.50","Motor caravans with only spark-ignition internal combustion reciprocating piston engine of a cylinder capacity > 1 500 cm³ but ≤ 3 000 cm³","Motorhomes",29102250
-"29.10.23.10","Motor vehicles with only diesel or semi-diesel engine ≤ 1 500 cm³ (excluding vehicles for transporting ≥ 10 persons, snowmobiles, golf cars and similar vehicles)","Cars",29102310
-"29.10.23.30","Motor vehicles with only diesel or semi-diesel engine > 1 500 cm³ but ≤ 2 500 cm³ (excluding vehicles for transporting ≥ 10 persons, motor caravans, snowmobiles, golf cars and similar vehicles)","Cars",29102330
-"29.10.23.40","Motor vehicles with only diesel or semi-diesel engine > 2 500 cm³ (excluding vehicles for transporting ≥ 10 persons, motor caravans, snowmobiles, golf cars and similar vehicles)","Cars",29102340
-"29.10.23.53","Motor caravans with only compression-ignition internal combustion piston engine (diesel or semi-diesel) of a cylinder capacity > 1 500 cm³ but ≤ 2 500 cm³","Motorhomes",29102353
-"29.10.23.55","Motor caravans with only compression-ignition internal combustion piston engine (diesel or semi-diesel) of a cylinder capacity > 2 500 cm³","Motorhomes",29102355
-"29.10.24.10","Motor vehicles, with both spark-ignition or compression-ignition internal combustion reciprocating piston engine and electric motor as motors for propulsion, other than those capable of being charged by plugging to external source of electric power","HEV",29102410
-"29.10.24.30","Motor vehicles, with both spark-ignition or compression-ignition internal combustion reciprocating piston engine and electric motor as motors for propulsion, capable of being charged by plugging to external source of electric power","PHEV",29102430
-"29.10.24.50","Motor vehicles, with only electric motor for propulsion","BEV",29102450
-"29.10.24.90","Other motor vehicles for the transport of persons (excluding vehicles with only electric motor for propulsion , vehicles for transporting ≥ 10 persons, snowmobiles, golf cars and similar vehicles)","Cars",29102490
-"29.10.30.00","Motor vehicles for the transport of ≥ 10 persons","Buses",29103000
-"29.10.41.10","Goods vehicles with a diesel or semi-diesel engine, of a gross vehicle weight ≤ 5 tonnes (excluding dumpers for off-highway use)","Trucks",29104110
-"29.10.41.30","Goods vehicles with a diesel or semi-diesel engine, of a gross vehicle weight > 5 tonnes but ≤ 20 tonnes (including vans) (excluding dumpers for off-highway use, tractors)","Trucks",29104130
-"29.10.41.40","Goods vehicles with compression-ignition internal combustion piston engine (diesel or semi-diesel), of a gross vehicle weight > 20 tonnes (excluding dumpers designed for off-highway use)","Trucks",29104140
-"29.10.42.00","Goods vehicles, with spark-ignition internal combustion piston engine; other goods vehicles, new","Trucks",29104200
-"29.10.43.00","Road tractors for semi-trailers","Trucks",29104300
-"29.10.44.00","Chassis fitted with engines, for tractors, motor cars and other motor vehicles principally designed for carrying people, goods vehicles and special purpose vehicles including for racing cars","Trucks",29104400
-"29.10.51.00","Crane lorries","Trucks",29105100
-"29.10.52.00","Motor vehicles specially designed for travelling on snow, golf cars and similar vehicles","special",29105200
-"29.10.59.30","Fire-fighting vehicles","Trucks",29105930
-"29.10.59.50","Concrete-mixer lorries","Trucks",29105950
-"29.10.59.90","Other special-purpose motor vehicles n.e.c.","special",29105990
+Key,PCC
+Pigments,20302130
+1301,20595660
+Permanent magnets,25992995
+0802b,26601280
+1205,28112400
+1201,28121200
+1202,28121320
+1202,28121350
+1202,28121380
+1202,28131105
+1202,28131125
+1202,28131145
+1202,28131165
+1202,28131185
+1202,28131220
+1202,28131250
+1202,28131280
+1202,28131320
+1202,28131340
+1202,28131360
+1202,28131380
+1202,28131413
+1202,28131415
+1202,28131417
+1202,28131420
+1202,28131430
+1202,28131451
+1202,28131453
+1202,28131455
+1202,28131460
+1202,28131471
+1202,28131475
+1202,28131480
+1202,28132170
+1202,28132190
+1202,28132200
+1202,28132300
+1202,28132400
+1202,28132530
+1202,28132550
+1202,28132630
+1202,28132650
+1202,28132670
+1202,28132690
+1202,28132730
+1202,28132753
+1202,28132755
+1202,28132800
+1202,28133100
+1202,28133200
+1203,28221130
+1203,28221330
+1203,28221350
+1203,28221370
+1203,28221330
+1203,28221350
+1203,28221370
+1203,28221420
+1203,28221433
+1203,28221435
+1203,28221440
+1203,28221450
+1203,28221460
+1203,28221470
+1207,28221513
+1207,28221515
+1207,28221550
+1207,28221570
+1203,28221630
+1203,28221670
+1207,28301000
+1207,28302110
+1207,28302210
+1207,28302300
+1207,28303140
+1207,28303210
+1207,28303220
+1207,28303230
+1207,28303250
+1207,28303270
+1207,28303300
+1207,28303430
+1207,28303450
+1207,28303900
+1207,28304010
+1207,28304030
+1207,28304050
+1207,28304070
+1207,28305130
+1207,28305150
+1207,28305170
+1207,28305200
+1207,28305340
+1207,28305420
+1207,28305450
+1207,28305480
+1207,28305915
+1207,28305930
+1207,28305945
+1207,28305960
+1207,28305970
+1207,283099Z0
+1206,28992020
+1206,28992040
+1206,28992060
+1206,28993935
+1206,28993945
+1207,28921100
+1207,28921233
+1207,28921235
+1207,28921253
+1207,28921255
+1207,28922130
+1207,28922150
+1207,28922210
+1207,28922310
+1207,28922430
+1207,28922450
+1207,28922500
+1207,28922630
+1207,28922650
+1207,28922700
+1207,28922810
+1207,28923010
+1207,28923030
+1207,28923050
+1207,28923070
+1207,28923090
+1207,28925000
+1101,29102100
+1101,29102230
+1107,29102250
+1101,29102310
+1101,29102330
+1101,29102340
+1107,29102353
+1107,29102355
+1103,29102410
+1102b,29102430
+1102a,29102450
+1101,29102490
+1106,29103000
+1105,29104110
+1105,29104130
+1105,29104140
+1105,29104200
+1105,29104300
+1105,29104400
+1105,29105100
+1104,29105200
+1105,29105930
+1105,29105950
+1104,29105990
