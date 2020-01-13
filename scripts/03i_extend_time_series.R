@@ -64,7 +64,7 @@ UNU_countries <- merge(UNU_countries, PurPow, by=c("Country", "Year"), all.x = T
 
 # Alternative approach:
 # Ad indicated in the file 'tbl_Extrapolation_exceptions' different methods can be used for instance
-# keeping the last available datapoint value as a constant or using a polynom trend instead.
+# keeping the last available datapoint value as a constant or using a polynomial trend instead.
 # These exceptions are set on combination of UNU_Key and Country.
 
 # Now we add these extrapolation exceptions to the dataset they can be used.
@@ -94,7 +94,7 @@ if (length(selection) > 0){
                                                   "ConnectionYear"="ConnectionYearUNU",
                                                   "YearsForTrend"="YearsForTrendUNU"))
   
-  # and remove the same rows from the orginal
+  # and remove the same rows from the original
   tbl_Extrapolation_exceptions <- tbl_Extrapolation_exceptions[-selection,]
   
   # Merge data for all countries per UNU_Key.
@@ -132,7 +132,7 @@ UNU_countries[selection, "YearsForTrend"] <- 9
 # UNU_countries: Extrapolations (1) with standard approach (KPI_PPP)
 # ----------------------------------------------------------
 # The standard KPI vs PPP approach is calculated first.
-# First calculate the lineair regression line for all KPI vs PPP for each UNU_Key
+# First calculate the linear regression line for all KPI vs PPP for each UNU_Key
 # for all countries except LUX in the last 10 years with exception of the very last available year.
 # Also only use values with flag = 0 or 60, which means no alterations have taken place or manual alterations
 # have been done.
@@ -144,7 +144,7 @@ selection <- which ( UNU_countries$Country != "LUX" & as.integer(UNU_countries$Y
                        UNU_countries$kpi >= 0)
 UNU_countries_selection <- UNU_countries[selection, ]
 
-# Column not needed for calulations. Only needed after using the calculations in original UNU_countries file 
+# Column not needed for calculations. Only needed after using the calculations in original UNU_countries file 
 UNU_countries_selection$ExtrapolationApproach <- NULL
 
 # Set an X before UNU_Key, so they will be read as character after the melt process.
@@ -166,7 +166,7 @@ models <- plyr::rename(models,c("Var2"="UNU_Key", "(Intercept)"="intercept", "UN
 
 
 # --------------- Gather some information on the model to see if it can be used -----------------
-# Calculate correlation coefficients to derterimine if the model can be used for estimations.
+# Calculate correlation coefficients to determine if the model can be used for estimations.
 correlations <- by(UNU_countries_selection, UNU_countries_selection$UNU_Key, 
                    function(UNU_countries_selection)
                      cor(UNU_countries_selection$kpi, UNU_countries_selection$PPP, 
@@ -246,7 +246,7 @@ UNU_countries$slope <- NULL
 
 
 # Some values get negative, so they should be set to zero.
-# Howeve since these values are used to connect the trend over all countries with the real data, 
+# However since these values are used to connect the trend over all countries with the real data, 
 # zero's will result in all future values zero.
 # So therefore negatives will be replaced with half the value of the previous year.
 sortorder <- order(UNU_countries$UNU_Key, UNU_countries$Country, UNU_countries$Year)
@@ -535,7 +535,7 @@ UNU_countries[selection, "ppi"] <- 0
 
 # Now all extrapolations are done based on KPI, the PPI can be estimated 
 # with proportions of the year before.
-# We check for these occurences in the last 10 years of available data and all future estimations.
+# We check for these occurrences in the last 10 years of available data and all future estimations.
 sortorder <- order(UNU_countries$UNU_Key, UNU_countries$Country, UNU_countries$Year)
 UNU_countries <- UNU_countries[sortorder, ]
 
@@ -621,7 +621,7 @@ UNU_countries <- merge(UNU_countries, dtUNU_countries, by=c("UNU_Key", "Country"
 rm(dtUNU_countries)
 
 # We also need the first kpi and ppi values to work with. But there are sometimes missing PPP values
-# even when KPI is avaliable. First solve that with proportions of first later year.
+# even when KPI is available. First solve that with proportions of first later year.
 selection <- which ( UNU_countries$kpi > 0 & is.na(UNU_countries$ppi) &
                        as.numeric(UNU_countries$Year) > as.numeric(UNU_countries$LastYearNoData) &
                        as.numeric(UNU_countries$Year) < LatestYear )
@@ -643,8 +643,8 @@ for (i in selection)
     UNU_countries[i, "kpi"]
 }
 
-# Now calculte the first available KPI and PPI values.
-# The first available real datapoint might be missing or very high compered to the following years, resulting in
+# Now calculate the first available KPI and PPI values.
+# The first available real datapoint might be missing or very high compared to the following years, resulting in
 # incorrect historic estimations. Therefore instead of the first real datapoint, an average of the 
 # first 3 datapoints is used to estimated historic values.
 # First real data values:

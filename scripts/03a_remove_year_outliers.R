@@ -23,7 +23,7 @@ dfmad_kpi <- as.data.frame(as.table(by(UNU_countries[, "kpi"],
 names(dfmad_kpi)[3] <- "mad_kpi"
 
 # 2 - number of valid values used in mad calculation
-dfvalidn <- count(UNU_countries[!is.na(UNU_countries$kpi), ][ , c("Country", "UNU_Key")])
+dfvalidn <- ddply(UNU_countries[!is.na(UNU_countries$kpi), ], c("Country", "UNU_Key"), nrow)
 names(dfvalidn)[3] <- "validn"
 
 # 3 - the last value needed is the median.

@@ -105,7 +105,7 @@ Export_totals_per_prodcom <- ddply (tbl_CN_prodcom_aggr[selection == TRUE, ], "P
                                     Export_Value_sum = sum(Export_Value_sum, na.rm=TRUE) )
 
 # Calculate ratio between value and number of units.
-Export_totals_per_prodcom$waarde_units_ratio <- 
+Export_totals_per_prodcom$value_units_ratio <- 
   Export_totals_per_prodcom$Export_Value_sum / Export_totals_per_prodcom$Export_Quantity_Sup_sum 
 
 Export_totals_per_prodcom$Export_Quantity_Sup_sum <- NULL
@@ -119,7 +119,7 @@ rm(Export_totals_per_prodcom)
 selection <- which(tbl_CN_prodcom_aggr$Export_Quantity_Sup_sum == 0)
 
 tbl_CN_prodcom_aggr[selection, "Export_Quantity_Sup_sum"] <- 
-  (tbl_CN_prodcom_aggr[selection, "Export_Value_sum"] / tbl_CN_prodcom_aggr[selection, "waarde_units_ratio"])
+  (tbl_CN_prodcom_aggr[selection, "Export_Value_sum"] / tbl_CN_prodcom_aggr[selection, "value_units_ratio"])
 
 
 # ----------------------------------------------------------
@@ -144,7 +144,7 @@ tbl_data_pcc_conf[tbl_data_pcc_conf$Country=="EU28" &
 # ----------------------------------------------------------
 tbl_data_pcc_conf <- merge(tbl_data_pcc_conf, tbl_CN_prodcom_aggr, by = c("Country", "PCC", "Year"), all.x = TRUE)
 rm (tbl_CN_prodcom_aggr)
-tbl_data_pcc_conf$waarde_units_ratio <- NULL
+tbl_data_pcc_conf$value_units_ratio <- NULL
 
 
 # ----------------------------------------------------------
@@ -379,7 +379,7 @@ sortorder_c <- c(3, 2, 1, 4, 5, 6, 7)
 
 # Sort dataframe rows by Country, Year and PCC.
 sortorder <- order(tbl_data_pcc_conf$Country, tbl_data_pcc_conf$Year, tbl_data_pcc_conf$PCC)
-tbl_data_pcc_conf <- tbl_data_pcc_conf[sortorder, sortorder_c]
+tbl_data_pcc_conf <- unique(tbl_data_pcc_conf[sortorder, sortorder_c])
 
 write.csv(tbl_data_pcc_conf, file = "tbl_PCC.csv", quote = TRUE, row.names = FALSE)
 
