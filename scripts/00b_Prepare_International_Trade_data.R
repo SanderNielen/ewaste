@@ -244,11 +244,10 @@ for (i in 1:length(filenames)) {
   
 }
 
-#write.csv(tbl_CN_all, file = "tbl_CN_all_products.csv", quote = TRUE, row.names = FALSE)
-
 # Select only electronic products.
-tbl_CN_all <- merge(tbl_CN_all, htbl_CN_Match_Key, by=c("CN", "Year"))
-tbl_CN_all$UNU_Key <- NULL
+# write.csv(tbl_CN_all, file = "tbl_CN_all_products.csv", quote = TRUE, row.names = FALSE)
+# tbl_CN_all <- merge(tbl_CN_all, htbl_CN_Match_Key, by=c("CN", "Year"))
+# tbl_CN_all$UNU_Key <- NULL
 
 
 

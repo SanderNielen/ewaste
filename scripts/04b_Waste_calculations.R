@@ -11,7 +11,7 @@
 #                     dr. F. Wang - United Nations University
 #
 #   Revised version:  V.M. van Straalen - Statistics Netherlands
-#
+#	Second revision:  S.S. van Nielen - Leiden University
 # -----------------------------------------------------------------------------------------------------------
 
 setwd(DATA_PATH)
@@ -25,9 +25,8 @@ require(reshape2)
 # ----------------------------------------------------------
 # tbl_POM: Read POM data
 # ----------------------------------------------------------
-tbl_POM <- read.csv("tbl_POM.csv", quote = "\"",
-                    colClasses = c("numeric", "character", "character", "character", "numeric", "numeric",
-                                   "numeric", "numeric", "numeric", "numeric"))
+tbl_POM <- read.csv("POM_Nd.csv", quote = "\"",
+                    colClasses = c("character", "character", "numeric", "character", rep("numeric", 3)))
 
 
 # ----------------------------------------------------------
@@ -69,7 +68,7 @@ for (i in year_first:year_last){
                   shape = tbl_POM[(tbl_POM$WEEE_POM_dif >= 0), "shape"],
                   scale = tbl_POM[(tbl_POM$WEEE_POM_dif >= 0), "scale"],
                   log = FALSE)
-  weee <-  wb * tbl_POM[(tbl_POM$WEEE_POM_dif >= 0), "POM_t"]
+  weee <-  wb * tbl_POM[(tbl_POM$WEEE_POM_dif >= 0), "Nd_t"]
   tbl_POM[(tbl_POM$WEEE_POM_dif >= 0), as.character(i)] <- weee
 }  
   
@@ -89,7 +88,7 @@ rm(weee)
 # Calculate WEEE-generated for all years as the sum of all past years per UNU_Key and Country
 
 # First melt all years into long form. Other variables excluding the years and the classifications are removed.
-mylong <- melt(tbl_POM[-(7:10)], id = c("UNU_Key", "Country", "Stratum", "Year", "POM_t", "POM_pieces"))
+mylong <- melt(tbl_POM[-(5:7)], id = c("UNU_Key", "Country", "Component", "Year"))
 
 # Remove empty rows to reduce memory burden
 # They are records for WEEE years that are earlier than the POM year.
@@ -97,63 +96,35 @@ mylong <- melt(tbl_POM[-(7:10)], id = c("UNU_Key", "Country", "Stratum", "Year",
 mylong <- mylong[!is.na(mylong$value), ]
 rm(tbl_POM)
 
-# value contains the WEEE in tonnes. Calculate now the WEEE_pieces based
-# on the ratio of the pieces and weight in the POM year.
-mylong$WEEE_pieces <- round(mylong$value / mylong$POM_t * mylong$POM_pieces, 0)
-mylong$POM_t <- NULL
-mylong$POM_pieces <- NULL
+mylong <- plyr::rename(mylong,c("variable"="WEEE_Year", "value"="Waste_Nd_t"))
+mylong$Year <- NULL
 
-mylong <- plyr::rename(mylong,c("Year"="POM_Year"))
-mylong <- plyr::rename(mylong,c("variable"="WEEE_Year", "value"="WEEE_t"))
+# Then cast into wide form while calculating the sum of every group.
+mywide_Nd <- dcast(mylong, UNU_Key + Country + Component ~ WEEE_Year, value.var = "Waste_Nd_t", sum, na.rm=TRUE)
 
-# Save this version of mylong so table can be saved with POM year and WEEE year together.
-# The United Nations University (UNU) uses this file for extra calculations.
-# write.csv2(mylong, file = "tbl_WEEE_per_POM.csv", quote = TRUE, row.names = FALSE)
+# Finally melt again to long form for merge with POM dataset.
+Nd_waste <- melt(mywide_Nd, id = c("UNU_Key", "Country", "Component"))
+Nd_waste <- plyr::rename(Nd_waste,c("variable"="Year", "value"="Waste_Nd_t"))
 
-mylong$POM_Year <- NULL
-
-# Then cast them into wide form while calculating the sum of every group.
-# First for the tonnes, then for the pieces
-mywide_t <- dcast(mylong, UNU_Key + Country + Stratum ~ WEEE_Year, value.var = "WEEE_t", sum, na.rm=TRUE)
-mywide_pieces <- dcast(mylong, UNU_Key + Country  + Stratum ~ WEEE_Year, value.var = "WEEE_pieces", sum, na.rm=TRUE)
-
-# Finally melt them again to long form for merge with POM dataset.
-dfWEEE_gen_t <- melt(mywide_t, id = c("UNU_Key", "Country", "Stratum"))
-dfWEEE_gen_pieces <- melt(mywide_pieces, id = c("UNU_Key", "Country", "Stratum"))
-
-dfWEEE_gen_t <- plyr::rename(dfWEEE_gen_t,c("variable"="Year", "value"="WEEE_t"))
-dfWEEE_gen_pieces <- plyr::rename(dfWEEE_gen_pieces,c("variable"="Year", "value"="WEEE_pieces"))
-
-# Merge the tonnes and the pieces.
-tbl_WEEE <- merge(dfWEEE_gen_t, dfWEEE_gen_pieces,  by=c("UNU_Key", "Country", "Stratum", "Year"),  all.x = TRUE)
-
-# Attach population again.
-tbl_WEEE <- merge(tbl_WEEE, Population,  by=c("Country", "Year"),  all.x = TRUE)
-
-# Calculate kpi and ppi
-tbl_WEEE$kpi <- tbl_WEEE$WEEE_t / tbl_WEEE$Inhabitants * 1000
-tbl_WEEE$ppi <- tbl_WEEE$WEEE_pieces / tbl_WEEE$Inhabitants
+# Attach population to calculate Nd gpi.
+Nd_waste <- merge(Nd_waste, Population,  by=c("Country", "Year"),  all.x = TRUE)
+Nd_waste$gpi <- Nd_waste$Waste_Nd_t / Nd_waste$Inhabitants * 1e6
 
 
 # Sort order for columns
-sortorder_c <- c("Stratum", "Country", "UNU_Key", "Year", "WEEE_t", "WEEE_pieces",
-                 "Inhabitants", "kpi",  "ppi")
+sortorder_c <- c("Component", "Country", "UNU_Key", "Year", "Waste_Nd_t",
+                 "Inhabitants", "gpi")
 
-# Sort dataframe rows by Country, UNU_Key and Year
-sortorder <- order(tbl_WEEE$Country, tbl_WEEE$UNU_Key, tbl_WEEE$Year)
-tbl_WEEE <- tbl_WEEE[sortorder, sortorder_c]
+# Sort dataframe rows by Country, Component, UNU_Key and Year
+sortorder <- order(Nd_waste$Country, Nd_waste$Component, Nd_waste$UNU_Key, Nd_waste$Year)
+Nd_waste <- Nd_waste[sortorder, sortorder_c]
 
 
-# Save data into tbl_WEEE.csv
-write.csv(tbl_WEEE, file = "tbl_WEEE.csv", quote = TRUE, row.names = FALSE)
+# Combine with waste flow data and save into tbl_Waste.csv
+Nd_waste <- merge(Nd_waste, tbl_WEEE, all.x = TRUE)
+write.csv(Nd_waste, file = "tbl_Waste.csv", quote = TRUE, row.names = FALSE)
 
 
 # Clean-up
-rm(dfWEEE_gen_t)
-rm(dfWEEE_gen_pieces)
-rm(mylong)
-rm(mywide_t)
-rm(mywide_pieces)
+rm(Nd_waste, mylong, mywide_Nd)
 
-# Do neodymium calculations
-source(file.path(SCRIPT_PATH, "04b_Waste_calculations.R"))

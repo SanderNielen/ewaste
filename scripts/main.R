@@ -76,10 +76,10 @@ stopifnot(all(file.exists(c(SCRIPT_PATH, DATA_PATH))))
 #------------------------------------
 # run all scripts
 scripts <- list(#"00a_Prepare_Prodcom_data.R"
-                "00b_Prepare_International_Trade_data.R",
-                "01_Prodcom_confidentials.R",
-                "02_Apparent_Consumption_Method.R"
-                #"03_POM_calculations.R",
+                #"00b_Prepare_International_Trade_data.R",
+                #"01_Prodcom_confidentials.R",
+                "02_Apparent_Consumption_Method.R",
+                "03_POM_calculations.R"
                 #"04_WEEE_calculations.R",
                 #"05_Make_tblAnalysis.R"
                 )

@@ -24,7 +24,7 @@ PurPow <- plyr::rename(PurPow,c("Value"="PPP"))
 # UNU_countries: Prepare dataset for extended data
 # ----------------------------------------------------------
 
-# The first data in our dataset is from 1995. Now we make records for all years back to 1980 and 9 years into the future.
+# Now we make records for all years back to 1980 and 9 years into the future.
 
 # Grab all records from one year (does not matter which one). Only first 4 columns.
 selection <- which(UNU_countries$Year == "2010")
@@ -33,19 +33,23 @@ oneyear <- UNU_countries[selection, 1:4]
 # Remove Year. Will be recreated.
 oneyear$Year <- NULL
 
-# Last year in original data
-LatestYear <- as.integer(max(UNU_countries$Year,1))
+# Fist and last year in original data
+FirstYear  <- as.integer(min(UNU_countries[UNU_countries$UNU_Key=="0001", "Year"]))
+LatestYear <- as.integer(max(UNU_countries[UNU_countries$UNU_Key=="0001", "Year"],1))
 
 # Change the year
-years<- c(1980:1994, (LatestYear+1): (max(PurPow$Year)))
+years<- c(1980:(FirstYear-1), (LatestYear+1): min(max(PurPow$Year), LatestYear+9))
 
-# Multiply Get data for every year.
+# Get data for every year.
 allyears <- merge(oneyear, years, all = TRUE)
 
 names(allyears)[ncol(allyears)] <- "Year"
 
 # Add it to the dataset
 UNU_countries <- rbind.fill(UNU_countries, allyears)
+
+# Temporary operation to remove duplicates (caused by car data available for 2019 already)
+UNU_countries <- UNU_countries[which(!duplicated(UNU_countries[,c("UNU_Key", "Country", "Year")])),]
 
 # Add PPP to dataset
 UNU_countries <- merge(UNU_countries, PurPow, by=c("Country", "Year"), all.x = TRUE)
@@ -159,7 +163,7 @@ models <- melt(models)
 models <- dcast(models, Var2 ~ Var1, value.var = "value")
 
 # Now the X before UNU_Key can go again
-models$Var2 <- substr(models$Var2, 2, 5)
+models$Var2 <- substr(models$Var2, 2, 6)
 UNU_countries_selection$XUNU_Key <- NULL
 
 models <- plyr::rename(models,c("Var2"="UNU_Key", "(Intercept)"="intercept", "UNU_countries_selection$PPP"="slope"))
@@ -728,7 +732,7 @@ UNU_countries <- merge(UNU_countries, Population,  by=c("Country", "Year"),  all
 # Clean-up
 # LatestYear will be used again in 3h.
 rm(i, selection, sortorder, years)
-rm(allyears, oneyear)
+rm(allyears, oneyear, FirstYear)
 
 detach("package:dplyr", unload=TRUE)
 

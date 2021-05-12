@@ -8,6 +8,21 @@ Author: Sander van Nielen - CML - Leiden University
 import pandas as pd
 from os import listdir, getcwd
 
+def check_duplicates():
+    datadir = getcwd() + "\\..\\data\\"
+    files = [f for f in listdir(datadir) if (f[-3:] == "csv")]
+    
+    for f in files:
+        if "Share" in f:
+            df = pd.read_csv(datadir + f, sep='\t')
+        elif "_all" in f:
+            df = pd.read_csv(datadir + f, sep=';')
+        else:
+            df = pd.read_csv(datadir + f)
+        duplicates = df.duplicated().sum()
+        if duplicates >0:
+            print(f + " has ", duplicates, " duplicates.")
+
 def update_CN_match(years, source, dest):
     """Function to add match data for recent years
     to the list in `htbl_CN_Match_Key.csv`.
@@ -145,12 +160,6 @@ def add_my_cat2(path):
         new.drop_duplicates(subset=[c1, "Year"], keep='last', inplace=True)
         new.to_csv(path+"htbl_%s_Match_Key.csv" % c1, index=False)
 
-#TODO: method for expanding weight list to all years
-#for y in years:
-#    new = my_weights.copy()
-#    new["Year"] = y
-#    df = pd.concat([df, new], ignore_index=True, sort=False)
-
 def weight(df):
     """Calculate the weight per row of a DataFrame with import & export
     columns.
@@ -262,6 +271,21 @@ def update_weight(root, update, with_yr, restore=True):
         match = pd.read_csv(root+"htbl_PCC_CN.csv", dtype={"PCC": str,
                                                            "CN": str})
         avg = pd.merge(avg, match)
+    
+    if update == "UNU_Key":
+        # Aggregate rows with the same weight for all years
+        for key in old.UNU_Key.unique():
+            selec = old[old.Country.isna() & (old.UNU_Key == key)]
+            pivot = pd.pivot_table(selec, index=["UNU_Key","AverageWeight"])
+            if len(pivot) > 1: continue
+            pivot = pivot.reset_index().drop(columns="Year")
+            old.drop(selec.index, inplace=True)
+            old = old.append(pivot, ignore_index=True, sort=False)
+        # Add some weights manual N.B.: for wind, weight in kg/kW
+        manual = pd.DataFrame({"UNU_Key": ["0401b", "0303a", "0303b", "0802b", "1205a", "1205b", "1301"],
+                               "AverageWeight": [0.0855, 1.81, 0.5, 16000, 38.224, 38.224, 1]})
+        old = old.append(manual, ignore_index=True, sort=False)
+    
     # Calculate median values per code, and per year when applicable
     with_yrs = avg.UNU_Key.isin(with_yr)
     median = pd.pivot_table(avg[~with_yrs], aggfunc='median', values="Average", index=update)
@@ -281,20 +305,37 @@ def update_weight(root, update, with_yr, restore=True):
 #        years = pd.DataFrame({"Year": [ y for y in range(start_year, 2022)]})
 #        rows = years.assign(key=1).merge(row).drop('key', 1) # equal to columns="key"
 #        old = old.append(rows, ignore_index=True, sort=False)
-    if update == "UNU_Key": # Add some  weights manual (not used yet)
-        manual = pd.DataFrame({"UNU_Key": ["Headphones + earphones", "Laptops", 
-                                           "MRIs", "Tablets"],
-                               "AverageWeight": [0.0855, 1.81, 16000, 0.5]})
-        new = new.append(manual, ignore_index=True, sort=False)
+    new["Year"] = new.Year.astype(pd.Int64Dtype())
     new.to_csv(root+"htbl_%s_Weight.csv" % code, index=False)
     return new
 
-def update_car_weight(data_path, source):
-    # TODO: IMPLEMENT
-    # Load ICCT data table, extract gross weight data
-    # Remove car data from htbl_Key_Weight.csv
+def update_car_weight(data_path):
+    """Takes the average car weight per country from ICCT statistics file
+    and adds it to the `htbl_Key_Weight.csv` file.
+    No distinction is made between different car types (HEV, BEV, normal).
+    """
+    # Load ICCT data table, extract gross weight data 
+    source = "C:\\Users\\nielenssvan\\surfdrive\\MFA\\data\\Vehicles\\Car-sales-EU.csv"
+    cars = pd.read_csv(source, usecols=["Category", "Year",
+                                        "Mass in running order [kg]"])
+    cars = cars.rename(columns={"Mass in running order [kg]": "AverageWeight",
+                                "Category": "Country_Name"})
+    cars["Country_Name"] = cars.Country_Name.replace({"UK": "United Kingdom"})
+    # Replace country names with codes
+    countries = pd.read_csv(data_path+"tbl_Countries.csv", usecols=[0,1])
+    countries["Country"] = countries.Country.str.upper()
+    countries["Country_Name"] = countries.Country_Name.str.replace("The ", '')
+    cars = pd.merge(cars, countries).drop(columns="Country_Name")
+    # Read original weight table
+    weights = pd.read_csv(data_path+"htbl_Key_Weight.csv")
+    keys = ["1101", "1102a", "1102b", "1103"]
+    #weights = weights[~ weights.UNU_Key.isin(keys)]
     # Append new data and save
-    raise NotImplementedError("Work in progress for car weight update.")
+    for key in keys:
+        cars["UNU_Key"] = key
+        weights = pd.concat([weights, cars], ignore_index=True, sort=False)
+    weights["Year"] = weights.Year.astype(pd.Int64Dtype())
+    weights.to_csv(data_path+"htbl_Key_Weight.csv", index=False)
 
 def column_stats(col):
     stats = (col.median(), col.mean(), col.std(), min(col), max(col))
@@ -309,18 +350,19 @@ def update_input(data_path):
 # Calls to functions
 data_path = getcwd() + "\\..\\data\\"
 # Export user-defined categories to my_categories_#.csv, add supplementary units
-# Run R script 00a
 #update_input(data_path)
-# Now run R scripts 00b & 01
-#all_weights = weight_table("C:\\Users\\nielenssvan\\surfdrive\\MFA\\data\\Net mass conversion factors\\", data_path)
+# Run R scripts 00a, 00b, 01
+#    all_weights = weight_table("C:\\Users\\nielenssvan\\surfdrive\\MFA\\data\\Net mass conversion factors\\", data_path)
 #    res = calc_avg_weight(3, data_path)
 #    med =pd.pivot_table(res, aggfunc='median', values="Average", index="CN")
 #    med.to_csv(data_path+"CN_Weight.csv")
 #    res = calc_median_weight("CN", data_path)
-with_yr = ["Fans", "Shavers", "Cars", "Motorhomes", "NiMH batteries", "Nickel batteries"]
-#new = update_weight(data_path, "UNU_Key", with_yr, 0)
-#new = update_weight(data_path, "CN", with_yr)
-#new = update_weight(data_path, "PCC", with_yr)
+with_yr = ["0201b", "0205b", "1101", "1107", "1302"]
+new = update_weight(data_path, "UNU_Key", with_yr, 0)
+#new = update_weight(data_path, "UNU_Key", with_yr)
+update_car_weight(data_path)
+new = update_weight(data_path, "CN", with_yr)
+new = update_weight(data_path, "PCC", with_yr)
 # Now run R script 02 & 03
 
 #years = range(1995,2019)

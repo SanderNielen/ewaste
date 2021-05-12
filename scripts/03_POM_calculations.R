@@ -172,8 +172,6 @@ rm(manualdata)
 UNU_countries <- merge(UNU_countries, Population,  by=c("Country", "Year"),  all.x = TRUE)
 UNU_countries <- merge(UNU_countries, Stratum,  by="Country",  all.x = TRUE)
 
-rm(Stratum) # Population is needed later for the estimation of past and future values
-
 # Calculate kg and pieces per inhabitant
 UNU_countries$kpi = UNU_countries$POM_kg / UNU_countries$Inhabitants
 UNU_countries$ppi = UNU_countries$POM_pieces / UNU_countries$Inhabitants
@@ -389,6 +387,12 @@ rm(UNU_countries_before_smooth)
 
 source(file.path(SCRIPT_PATH, "03g_CRT_monitors.R"))
 
+
+# ----------------------------------------------------------
+# UNU_countries: Add external POM data for some UNU_Keys
+# ----------------------------------------------------------
+
+source(file.path(SCRIPT_PATH, "03h_additional_product_data.R"))
 
 
 # ----------------------------------------------------------
